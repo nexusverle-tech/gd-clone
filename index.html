@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Geometry Dash — Clone</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Geometry Dash — Clone</h1>
+      <div class="controls">
+        <select id="levelSelect"></select>
+        <button id="playBtn">Play</button>
+        <button id="editorBtn">Level Editor</button>
+        <button id="iconBtn">Customize Icon</button>
+      </div>
+    </header>
+
+    <div class="tuning">
+      <label>Gravity: <input id="gravityRange" type="range" min="800" max="3200" step="50"></label>
+      <label>Speed: <input id="speedRange" type="range" min="200" max="700" step="10"></label>
+      <label>Jump: <input id="jumpRange" type="range" min="400" max="1000" step="10"></label>
+      <label>Hold: <input id="holdRange" type="range" min="0" max="0.4" step="0.01"></label>
+      <label>Particles: <input id="particleCountRange" type="range" min="1" max="4" step="1" title="Particle multiplier (1-4)"></label>
+      <label>Size: <input id="particleSizeRange" type="range" min="1" max="6" step="1" title="Particle size multiplier"></label>
+      <label>Gravity: <input id="particleGravityRange" type="range" min="0" max="200" step="10" title="Particle gravity factor"></label>
+      <label>Sprite: <input id="particleSpriteToggle" type="checkbox" checked></label>
+      <span id="fps">-- fps</span>
+      <button id="particlePresetSave">Save Preset</button>
+      <button id="particlePresetLoad">Load Preset</button>
+      <select id="particlePresetList"></select>
+    </div>
+
+    <main>
+      <canvas id="gameCanvas" width="1000" height="300"></canvas>
+      <div id="hud">
+        <div id="score">0%</div>
+        <div id="status">Ready</div>
+      </div>
+      <audio id="music" src="assets/music.mp3" preload="auto"></audio>
+      <audio id="sfx-jump" src="assets/jump.wav" preload="auto"></audio>
+      <audio id="sfx-die" src="assets/die.wav" preload="auto"></audio>
+      <audio id="sfx-portal" src="assets/portal.wav" preload="auto"></audio>
+    </main>
+
+    <div id="iconModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Customize Icon</h2>
+        <label>Shape:
+          <select id="iconShape">
+            <option value="square">Square</option>
+            <option value="circle">Circle</option>
+            <option value="triangle">Triangle</option>
+          </select>
+        </label>
+        <label>Color:
+          <input type="color" id="iconColor" value="#ffcc00">
+        </label>
+        <label>Glow:
+          <input type="checkbox" id="iconGlow" checked>
+        </label>
+        <div class="modal-actions">
+          <button id="iconSave">Save</button>
+          <button id="iconClose">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="editorModal" class="modal hidden">
+      <div class="modal-content large">
+        <h2>Level Editor</h2>
+        <div class="editor-top">
+          <button id="editorPlay">Play This Level</button>
+          <button id="editorExport">Export JSON</button>
+          <button id="editorImport">Import JSON</button>
+          <button id="editorClose">Close</button>
+        </div>
+        <canvas id="editorCanvas" width="1000" height="300"></canvas>
+        <div class="editor-tools">
+          <label>Tool:
+            <select id="editorTool">
+              <option value="block">Block</option>
+              <option value="spike">Spike</option>
+              <option value="erase">Erase</option>
+            </select>
+          </label>
+          <label>Grid size:
+            <input type="number" id="editorGrid" value="20" min="10" max="100">
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
